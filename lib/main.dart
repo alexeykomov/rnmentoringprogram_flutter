@@ -43,39 +43,60 @@ class MyApp extends StatelessWidget {
 
     return Container(
         decoration: BoxDecoration(color: EpamColors.White),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: Container(
-                    width: 200,
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: CupertinoTextField(
-                      placeholder: 'Username',
-                      decoration: BoxDecoration(
-                        border: _kDefaultRoundedBorder,
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      ),
-                    )),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Text("Friday's shop",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: EpamColors.Graphite,
+                              fontFamily: 'vincHand')))
+                ],
               ),
-              Directionality(
-                textDirection: TextDirection.ltr,
-                child: Container(
-                    width: 200,
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: CupertinoTextField(
-                      placeholder: 'Password',
-                      obscureText: true,
-                      decoration: BoxDecoration(
-                        border: _kDefaultRoundedBorder,
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                      ),
-                    )),
-              ),
-            ],
-          ),
+            ),
+            Expanded(
+                flex: 1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Container(
+                          width: 200,
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: CupertinoTextField(
+                            placeholder: 'Username',
+                            decoration: BoxDecoration(
+                              border: _kDefaultRoundedBorder,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)),
+                            ),
+                          )),
+                    ),
+                    Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: Container(
+                          width: 200,
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: CupertinoTextField(
+                            placeholder: 'Password',
+                            obscureText: true,
+                            decoration: BoxDecoration(
+                              border: _kDefaultRoundedBorder,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(4.0)),
+                            ),
+                          )),
+                    ),
+                  ],
+                ))
+          ],
         ));
   }
 }
