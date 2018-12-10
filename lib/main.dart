@@ -22,7 +22,15 @@ class EpamColors {
   static const Color WhiteTransparent = Color.fromARGB(120, 255, 255, 255);
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  void onLoginTap() {}
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     var textEditingControllerPassword = TextEditingController();
@@ -32,13 +40,20 @@ class MyApp extends StatelessWidget {
     const BorderSide _kDefaultRoundedBorderSide = BorderSide(
       color: EpamColors.EpamBlue,
       style: BorderStyle.solid,
-      width: 0.0,
+      width: 1.0,
     );
     const Border _kDefaultRoundedBorder = Border(
       top: _kDefaultRoundedBorderSide,
       bottom: _kDefaultRoundedBorderSide,
       left: _kDefaultRoundedBorderSide,
       right: _kDefaultRoundedBorderSide,
+    );
+    // Default iOS style from HIG specs with larger font.
+    const TextStyle _kDefaultTextStyle = TextStyle(
+      fontFamily: 'vincHand',
+      fontSize: 18.0,
+      color: EpamColors.Graphite,
+      decoration: TextDecoration.none,
     );
 
     return Container(
@@ -50,11 +65,16 @@ class MyApp extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.only(bottom: 50),
+                    child:
+                        Image.asset('lib/smiling.png', width: 50, height: 50),
+                  ),
                   Directionality(
                       textDirection: TextDirection.ltr,
                       child: Text("Friday's shop",
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 35,
                               color: EpamColors.Graphite,
                               fontFamily: 'vincHand')))
                 ],
@@ -68,32 +88,56 @@ class MyApp extends StatelessWidget {
                     Directionality(
                       textDirection: TextDirection.ltr,
                       child: Container(
-                          width: 200,
-                          padding: EdgeInsets.only(bottom: 20),
+                          width: 280,
+                          height: 30,
+                          margin: EdgeInsets.only(bottom: 20),
                           child: CupertinoTextField(
                             placeholder: 'Username',
+                            textAlign: TextAlign.start,
                             decoration: BoxDecoration(
                               border: _kDefaultRoundedBorder,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)),
+                                  BorderRadius.all(Radius.circular(3.0)),
                             ),
+                            style: _kDefaultTextStyle,
                           )),
                     ),
                     Directionality(
                       textDirection: TextDirection.ltr,
                       child: Container(
-                          width: 200,
-                          padding: EdgeInsets.only(bottom: 20),
+                          width: 280,
+                          height: 30,
+                          margin: EdgeInsets.only(bottom: 20),
                           child: CupertinoTextField(
                             placeholder: 'Password',
+                            textAlign: TextAlign.start,
                             obscureText: true,
                             decoration: BoxDecoration(
                               border: _kDefaultRoundedBorder,
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(4.0)),
+                                  BorderRadius.all(Radius.circular(3.0)),
                             ),
+                            style: _kDefaultTextStyle,
                           )),
                     ),
+                    GestureDetector(
+                        onTap: this.onLoginTap,
+                        child: Container(
+                          width: 100,
+                          height: 30,
+                          decoration: BoxDecoration(
+                              color: EpamColors.EpamBlue,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(3.0))),
+                          child: Center(
+                              child: Directionality(
+                                  textDirection: TextDirection.ltr,
+                                  child: Text('login',
+                                      style: TextStyle(
+                                        fontFamily: 'vincHand',
+                                        color: EpamColors.White,
+                                      )))),
+                        ))
                   ],
                 ))
           ],
