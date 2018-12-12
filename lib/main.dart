@@ -10,6 +10,7 @@ class EpamColors {
   EpamColors._();
 
   static const Color EpamBlue = Color(0xFF76cdd8);
+  static const Color EpamBlue50 = Color.fromARGB(100, 118, 205, 216);
   static const Color LimeGreen = Color(0xFFcedb56);
   static const Color Graphite = Color(0xFF222222);
   static const Color White = Color(0xFFffffff);
@@ -22,14 +23,9 @@ class EpamColors {
   static const Color WhiteTransparent = Color.fromARGB(120, 255, 255, 255);
 }
 
-class MyApp extends StatefulWidget {
-  void onLoginTap() {}
-
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return null;
-  }
+class LoginScreenState extends State<MyApp> {
+  bool tapped = false;
+  bool goLogin = true;
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +117,14 @@ class MyApp extends StatefulWidget {
                           )),
                     ),
                     GestureDetector(
-                        onTap: this.onLoginTap,
+                        onTapUp: this.onLoginTapUp,
+                        onTapDown: this.onLoginTapDown,
+                        onTapCancel: this.onLoginTapCancel,
                         child: Container(
                           width: 100,
                           height: 30,
                           decoration: BoxDecoration(
-                              color: EpamColors.EpamBlue,
+                              color: this.tapped ? EpamColors.EpamBlue50 : EpamColors.EpamBlue,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(3.0))),
                           child: Center(
@@ -143,4 +141,28 @@ class MyApp extends StatefulWidget {
           ],
         ));
   }
+
+  void onLoginTapUp(tapUpDetails) {
+    setState(() {
+      tapped = false;
+      goLogin = true;
+    });
+  }
+
+  void onLoginTapDown(tapDownDetails) {
+    setState(() {
+      tapped = true;
+    });
+  }
+
+  void onLoginTapCancel() {
+    setState(() {
+      tapped = false;
+    });
+  }
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => LoginScreenState();
 }
